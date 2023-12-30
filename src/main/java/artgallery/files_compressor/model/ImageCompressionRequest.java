@@ -7,8 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CompressionParams {
-  private int width;
-  private int height;
-  private boolean keepAspectRatio;
+public class ImageCompressionRequest {
+  private String source;
+  private String destination;
+  private String mimeType;
+  private CompressionParams params;
 }

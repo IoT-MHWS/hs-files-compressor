@@ -1,11 +1,13 @@
 package artgallery.files_compressor.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-public abstract class ImageCompressionDTO<T extends CompressionParams> {
+@AllArgsConstructor
+public class ImageCompressionResponse {
   private String source;
   private String destination;
   private String mimeType;
-  private T params;
+  private boolean result;
 }

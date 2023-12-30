@@ -5,10 +5,9 @@ app:
   paintings:
     repository:
       fs:
-        mount: ${HS_FILES_PAINTINGS_VOLUME:./pictures}
+        mount: ${HS_FILES_PAINTINGS_VOLUME:./paintings}
     client:
-      server-urls:
-        - ws://localhost:8767
+      server-urls: ws://localhost:8767/ws
 
 
 #logging:

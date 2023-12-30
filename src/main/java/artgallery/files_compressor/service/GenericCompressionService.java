@@ -1,5 +1,6 @@
 package artgallery.files_compressor.service;
 
+import artgallery.files_compressor.model.CompressionParams;
 import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.stereotype.Service;
 
@@ -8,12 +9,10 @@ import java.io.IOException;
 
 @Service
 public class GenericCompressionService {
-  public BufferedImage compress(BufferedImage input, GenericCompressionParams params) throws IOException {
+  public BufferedImage compress(BufferedImage input, CompressionParams params) throws IOException {
     return Thumbnails.of(input)
-      .size(params.width, params.height)
-      .keepAspectRatio(params.keepRatio)
+      .size(params.getWidth(), params.getHeight())
+      .keepAspectRatio(params.isKeepAspectRatio())
       .asBufferedImage();
   }
-
-  public record GenericCompressionParams(int width, int height, boolean keepRatio) {};
 }
