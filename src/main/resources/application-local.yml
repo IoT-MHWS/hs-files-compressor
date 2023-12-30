@@ -1,0 +1,16 @@
+server:
+  port: 8769
+
+app:
+  paintings:
+    repository:
+      fs:
+        mount: ${HS_FILES_PAINTINGS_VOLUME:./pictures}
+
+#logging:
+#  level:
+#    org:
+#      springframework:
+#        security: DEBUG
+#        web: DEBUG
+#      hibernate: ERROR
