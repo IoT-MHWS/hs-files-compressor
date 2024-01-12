@@ -1,12 +1,23 @@
 services:
-  eureka:
+  hs-eureka:
     image: ${HS_EUREKA_IMAGE:-mhws/hs-eureka:latest}
     ports:
       - ${HS_EUREKA_PORT:-8761}:8761
+
+  hs-files:
+    image: ${HS_FILES_IMAGE:-mhws/hs-files:latest}
+    ports:
+      - ${HS_FILES_PORT:-8767}:8767
+    environment:
+      HS_FILES_EUREKA_URI: http://hs-eureka:8761/eureka
 
   hs-files-compressor:
     build:
       context: .
       dockerfile: dockerfile
+    depends_on:
+      - hs-files
     ports:
       - ${HS_FILES_COMPRESSOR_PORT:-8769}:8769
+    environment:
+      HS_FILES_CLIENT_SERVER_URLS: ws://hs-files:8767/ws
