@@ -7,7 +7,7 @@ app:
       fs:
         mount: ${HS_FILES_PAINTINGS_VOLUME:./paintings}
     client:
-      server-urls: ws://localhost:8767/ws
+      server-urls: ws://${HS_FILES_HOST:localhost}:${HS_FILES_PORT:8767}/ws
 
 
 #logging:
