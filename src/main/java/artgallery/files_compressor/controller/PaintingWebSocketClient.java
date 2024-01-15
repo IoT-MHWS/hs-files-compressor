@@ -57,15 +57,20 @@ public class PaintingWebSocketClient {
     }
 
     @Override
-    public void handleFrame(StompHeaders headers, Object payload) {
-      if (payload instanceof ImageCompressionRequest payload1) {
+    public void handleFrame(StompHeaders headers, Object _payload) {
+      if (_payload instanceof ImageCompressionRequest payload) {
+        ImageCompressionResponse response;
         try {
-          var result = paintingCompressionService.compressImage(payload1);
-          var response = new ImageCompressionResponse(result.getSource(), result.getDestination(), result.getMimeType(), true);
-          stompSession.send("/app/pictures.compression", response);
-        } catch (IOException ex) {
-          ex.printStackTrace();
+          var result = paintingCompressionService.compressImage(payload);
+          response = new ImageCompressionResponse(result.getSource(), result.getDestination(),
+            result.getMimeType(), true, null);
+        } catch (Exception ex) {
+          String msg = ex.getClass().getName() + ": " + ex.getMessage();
+          response = new ImageCompressionResponse(payload.getSource(), payload.getDestination(),
+            payload.getMimeType(), false, msg);
+          log.warn(msg);
         }
+        stompSession.send("/app/pictures.compression", response);
       }
     }
 

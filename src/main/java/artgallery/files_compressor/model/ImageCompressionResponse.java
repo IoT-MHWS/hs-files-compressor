@@ -10,4 +10,5 @@ public class ImageCompressionResponse {
   private ImageLocation destination;
   private String mimeType;
   private boolean result;
+  private String msg;
 }
