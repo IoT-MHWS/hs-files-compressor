@@ -1,4 +1,4 @@
-package artgallery.files_compressor.repository.fs;
+package artgallery.files_compressor.util;
 
 import java.io.IOException;
 import java.nio.file.Files;

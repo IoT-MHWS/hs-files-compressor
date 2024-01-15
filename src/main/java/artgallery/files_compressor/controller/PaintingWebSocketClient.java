@@ -1,6 +1,5 @@
 package artgallery.files_compressor.controller;
 
-import artgallery.files_compressor.model.CompressionParams;
 import artgallery.files_compressor.model.ImageCompressionRequest;
 import artgallery.files_compressor.model.ImageCompressionResponse;
 import artgallery.files_compressor.service.PaintingCompressionService;
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.messaging.converter.MappingJackson2MessageConverter;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.messaging.simp.stomp.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.socket.client.WebSocketClient;
@@ -24,7 +22,6 @@ import java.lang.reflect.Type;
 @Slf4j
 @RequiredArgsConstructor
 public class PaintingWebSocketClient {
-
   private final PaintingCompressionService paintingCompressionService;
 
   @Value("${app.paintings.client.server-urls}")
@@ -47,13 +44,13 @@ public class PaintingWebSocketClient {
   }
 
   private static class CustomStompSessionHandler extends StompSessionHandlerAdapter {
-
     private final PaintingCompressionService paintingCompressionService;
     private StompSession stompSession;
 
     public CustomStompSessionHandler(PaintingCompressionService paintingCompressionService) {
       this.paintingCompressionService = paintingCompressionService;
     }
+
     @Override
     public Type getPayloadType(StompHeaders headers) {
       return ImageCompressionRequest.class;
@@ -67,7 +64,7 @@ public class PaintingWebSocketClient {
           var response = new ImageCompressionResponse(result.getSource(), result.getDestination(), result.getMimeType(), true);
           stompSession.send("/app/pictures.compression", response);
         } catch (IOException ex) {
-          log.warn(ex.getMessage());
+          ex.printStackTrace();
         }
       }
     }

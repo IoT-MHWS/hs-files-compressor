@@ -1,11 +1,13 @@
 package artgallery.files_compressor.repository;
 
+import artgallery.files_compressor.model.ImageLocation;
+
 import java.io.IOException;
 
 public interface PaintingRepository {
 
-  byte[] getPainting(String path) throws IOException;
+  byte[] getPainting(ImageLocation path) throws IOException;
 
-  void putPainting(String path, byte[] imageModel) throws IOException;
+  void putPainting(ImageLocation path, byte[] imageModel) throws IOException;
 
 }

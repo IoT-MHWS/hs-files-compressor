@@ -1,4 +1,4 @@
-package artgallery.files_compressor.repository.fs;
+package artgallery.files_compressor.repository;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;

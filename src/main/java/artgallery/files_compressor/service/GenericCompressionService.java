@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 @Service
-public class GenericCompressionService {
+public class GenericCompressionService implements CompressionService {
   public BufferedImage compress(BufferedImage input, CompressionParams params) throws IOException {
     return Thumbnails.of(input)
       .size(params.getWidth(), params.getHeight())
