@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ImageCompressionRequest {
-  private String source;
-  private String destination;
+  private ImageLocation source;
+  private ImageLocation destination;
   private String mimeType;
   private CompressionParams params;
 }

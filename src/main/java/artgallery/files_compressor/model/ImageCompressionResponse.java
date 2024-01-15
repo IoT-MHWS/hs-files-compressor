@@ -6,8 +6,8 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class ImageCompressionResponse {
-  private String source;
-  private String destination;
+  private ImageLocation source;
+  private ImageLocation destination;
   private String mimeType;
   private boolean result;
 }
