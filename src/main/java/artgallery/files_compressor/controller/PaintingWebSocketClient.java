@@ -62,11 +62,11 @@ public class PaintingWebSocketClient {
         ImageCompressionResponse response;
         try {
           var result = paintingCompressionService.compressImage(payload);
-          response = new ImageCompressionResponse(result.getSource(), result.getDestination(),
+          response = new ImageCompressionResponse(payload.getId(), result.getSource(), result.getDestination(),
             result.getMimeType(), true, null);
         } catch (Exception ex) {
           String msg = ex.getClass().getName() + ": " + ex.getMessage();
-          response = new ImageCompressionResponse(payload.getSource(), payload.getDestination(),
+          response = new ImageCompressionResponse(payload.getId(), payload.getSource(), payload.getDestination(),
             payload.getMimeType(), false, msg);
           log.warn(msg);
         }
